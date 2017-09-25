@@ -25,16 +25,12 @@ This is generally used with a [CSV Parser](https://github.com/okfn/csv.js).
 ```
 new Vue({
   mounted() {
-    // "this" inside CSV instance is qequal to that, not vue
-    let self = this;
-    // // Fetch will not work on local (file:// urls). 
-    // // Can use http-sever to run a small node/python/mamp server
     CSV.fetch({
-      url: './path/to.csv'
-    }).then(function(dataset) {
-      let products = self.$formatProducts(dataset);
+      url: './data/csv-files/bicycles.csv'
+    }).then(dataset => {
+      let products = this.$formatProducts(dataset);
+      console.log(products);
     });
-
   }
 }).$mount('#app');
 ```
