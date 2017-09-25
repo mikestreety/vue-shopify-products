@@ -47,11 +47,6 @@ new Vue({
 
 ```js
 new Vue({
-  store,
-  router,
-
-  // mounted() {
-  // }
   mounted() {
     d3.csv('./data/csv-files/bicycles.csv', (error, data) => {
       let products = this.$formatProducts(data);
