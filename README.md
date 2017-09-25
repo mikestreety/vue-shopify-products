@@ -8,13 +8,13 @@ This Vue plugin takes a shopify CSV and converts it into a more freiendly format
 
 Include the JS in your file:
 
-```
+```html
 <script type="text/javascript" src="assets/js/vue-shopify-products.js"></script>
 ```
 
 and `use` the plugin before you initialise Vue:
 
-```
+```js
 Vue.use(ShopifyProducts);
 ```
 
@@ -22,7 +22,7 @@ Vue.use(ShopifyProducts);
 
 This is generally used with a [CSV Parser](https://github.com/okfn/csv.js).
 
-```
+```js
 new Vue({
   mounted() {
     CSV.fetch({
