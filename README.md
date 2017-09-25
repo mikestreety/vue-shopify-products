@@ -20,15 +20,43 @@ Vue.use(ShopifyProducts);
 
 ## Usage
 
-This is generally used with a [CSV Parser](https://github.com/okfn/csv.js).
+You can use this with currently two libraries
+
+### [CSV Parser](https://github.com/okfn/csv.js).
+
+#### Example:
 
 ```js
 new Vue({
   mounted() {
     CSV.fetch({
       url: './data/csv-files/bicycles.csv'
-    }).then(dataset => {
-      let products = this.$formatProducts(dataset);
+    }).then(data => {
+      let products = this.$formatProducts(data);
+      
+      // Do what you will
+      console.log(products);
+    });
+  }
+}).$mount('#app');
+```
+
+### [d3](https://d3js.org/).
+
+#### Example:
+
+```js
+new Vue({
+  store,
+  router,
+
+  // mounted() {
+  // }
+  mounted() {
+    d3.csv('./data/csv-files/bicycles.csv', (error, data) => {
+      let products = this.$formatProducts(data);
+      
+      // Do what you will
       console.log(products);
     });
   }
