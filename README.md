@@ -27,6 +27,8 @@ You can use this with currently two libraries
 #### Example:
 
 ```js
+Vue.use(ShopifyProducts);
+
 new Vue({
   mounted() {
     CSV.fetch({
@@ -46,6 +48,8 @@ new Vue({
 #### Example:
 
 ```js
+Vue.use(ShopifyProducts);
+
 new Vue({
   mounted() {
     d3.csv('./data/csv-files/bicycles.csv', (error, data) => {
