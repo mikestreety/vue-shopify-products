@@ -1,4 +1,5 @@
 const ShopifyProducts = {
+
 	install(Vue) {
 		let generateSlug = function(path) {
 			return path
@@ -59,16 +60,9 @@ const ShopifyProducts = {
 						type: product.type,
 						tags: product.tags,
 						images: [],
-						variations: {}
+						variations: {},
+						variation_products: []
 					};
-
-					// Check if a variation exists
-					if (product['option1-name']) {
-						item.variations = {
-							title: product['option1-name'],
-							items: []
-						};
-					}
 				}
 
 				// Add any images from itself or variations
@@ -79,10 +73,21 @@ const ShopifyProducts = {
 					});
 				}
 
+				// Create any variations as keys for later accessing, e.g.
+				// id: 1, value: Color, slug: color
+				for (let i = 1; i < 4; i++) {
+					if(product.hasOwnProperty('option' + i + '-name') && product['option' + i + '-name'] !== null) {
+						item.variations[i] = {
+							id: i,
+							value: product['option' + i + '-name'],
+							slug: generateSlug(product['option' + i + '-name'])
+						};
+					}
+				}
+
 				// Add all variations with the same handle it finds
 				// Even the first product itself would be a varation
-				item.variations.items.push({
-					title: product['option1-value'],
+				let variation = {
 					barcode: product['variant-barcode'],
 					comaprePrice: product['variant-compare-at-price'],
 					grams: product['variant-grams'],
@@ -90,8 +95,20 @@ const ShopifyProducts = {
 					price: product['variant-price'],
 					shipping: product['variant-requires-shipping'],
 					sku: product['variant-sku'],
-					taxable: product['variant-taxable']
-				});
+					taxable: product['variant-taxable'],
+					variant: {}
+				};
+
+				// Create a key value on the variation of name/value e.g color: blue
+				for (let v in item.variations) {
+					v = item.variations[v];
+					variation.variant[generateSlug(v.value)] = product['option' + v.id + '-value'];
+				}
+
+				// Remove any null values from the variatiomn
+				Object.keys(variation).forEach((key) => (variation[key] == null) && delete variation[key]);
+
+				item.variation_products.push(variation);
 
 				// Update the output object
 				output[handle] = item;
