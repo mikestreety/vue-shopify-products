@@ -98,6 +98,13 @@ const ShopifyProducts = {
 					variant: {}
 				};
 
+				if (product['variant-image']) {
+					variation.image = {
+						source: product['variant-image'],
+						alt: product.title
+					};
+				}
+
 				// Create a key value on the variation of name/value e.g color: blue
 				for (let v in item.variationTypes) {
 					v = item.variationTypes[v];
