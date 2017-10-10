@@ -1,5 +1,4 @@
 const ShopifyProducts = {
-
 	install(Vue) {
 		let generateSlug = function(path) {
 			return path
@@ -60,8 +59,8 @@ const ShopifyProducts = {
 						type: product.type,
 						tags: product.tags,
 						images: [],
-						variations: {},
-						variation_products: []
+						variationTypes: {},
+						variationProducts: []
 					};
 				}
 
@@ -76,8 +75,8 @@ const ShopifyProducts = {
 				// Create any variations as keys for later accessing, e.g.
 				// id: 1, value: Color, slug: color
 				for (let i = 1; i < 4; i++) {
-					if(product.hasOwnProperty('option' + i + '-name') && product['option' + i + '-name'] !== null) {
-						item.variations[i] = {
+					if (product.hasOwnProperty('option' + i + '-name') && product['option' + i + '-name'] !== null) {
+						item.variationTypes[i] = {
 							id: i,
 							value: product['option' + i + '-name'],
 							slug: generateSlug(product['option' + i + '-name'])
@@ -100,15 +99,18 @@ const ShopifyProducts = {
 				};
 
 				// Create a key value on the variation of name/value e.g color: blue
-				for (let v in item.variations) {
-					v = item.variations[v];
-					variation.variant[generateSlug(v.value)] = product['option' + v.id + '-value'];
+				for (let v in item.variationTypes) {
+					v = item.variationTypes[v];
+					variation.variant[generateSlug(v.value)] = {
+						name: v.value,
+						value: product['option' + v.id + '-value']
+					};
 				}
 
 				// Remove any null values from the variatiomn
-				Object.keys(variation).forEach((key) => (variation[key] == null) && delete variation[key]);
+				Object.keys(variation).forEach(key => variation[key] == null && delete variation[key]);
 
-				item.variation_products.push(variation);
+				item.variationProducts.push(variation);
 
 				// Update the output object
 				output[handle] = item;
