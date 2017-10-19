@@ -1,3 +1,13 @@
+/*!
+ * Vue Shopify Products
+ * ====================
+ *
+ * Format shopify CSV files into a usable object.
+ * https://github.com/mikestreety/vue-shopify-products
+ *
+ * Copyright 2017 Mike Street
+ */
+
 const ShopifyProducts = {
 	install(Vue) {
 		let generateSlug = function(path) {
