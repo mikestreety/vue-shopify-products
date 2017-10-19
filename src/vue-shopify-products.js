@@ -65,8 +65,14 @@ const ShopifyProducts = {
 						title: product.title,
 						body: product['body-html'],
 						handle: handle,
-						vendor: product.vendor,
-						type: product.type,
+						vendor: {
+							title: product.vendor,
+							handle: generateSlug(product.vendor)
+						},
+						type: {
+							title: product.type,
+							handle: generateSlug(product.type)
+						},
 						tags: product.tags,
 						images: [],
 						variationTypes: {},
