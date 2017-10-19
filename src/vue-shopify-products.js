@@ -12,6 +12,7 @@ const ShopifyProducts = {
 	install(Vue) {
 		let generateSlug = function(path) {
 			return path
+				.trim()
 				.toLowerCase()
 				.replace(/^\/|\/$/g, '')
 				.replace(/ /g, '-')
@@ -73,7 +74,12 @@ const ShopifyProducts = {
 							title: product.type,
 							handle: generateSlug(product.type)
 						},
-						tags: product.tags,
+						tags: product.tags.split(',').map(tag => {
+							return {
+								title: tag.trim(),
+								handle: generateSlug(tag)
+							};
+						}),
 						images: [],
 						variationTypes: {},
 						variationProducts: []
