@@ -1,12 +1,12 @@
 /*!
- * Vue Shopify Products
- * ====================
- *
- * Format shopify CSV files into a usable object.
- * https://github.com/mikestreety/vue-shopify-products
- *
- * Copyright 2017 Mike Street
- */
+* Vue Shopify Products
+* ====================
+*
+* Format shopify CSV files into a usable object.
+* https://github.com/mikestreety/vue-shopify-products
+*
+* Copyright 2017 Mike Street
+*/
 
 const ShopifyProducts = {
 	install(Vue) {
@@ -70,10 +70,6 @@ const ShopifyProducts = {
 							title: product.vendor,
 							handle: generateSlug(product.vendor)
 						},
-						type: {
-							title: product.type,
-							handle: generateSlug(product.type)
-						},
 						tags: product.tags.split(',').map(tag => {
 							return {
 								title: tag.trim(),
@@ -83,6 +79,14 @@ const ShopifyProducts = {
 						images: [],
 						variationTypes: {},
 						variationProducts: []
+					};
+				}
+
+				// Add type object if it exists
+				if (product.type) {
+					item.type = {
+						title: product.type,
+						handle: generateSlug(product.type)
 					};
 				}
 
