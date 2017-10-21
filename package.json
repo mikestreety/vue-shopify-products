@@ -1,6 +1,6 @@
 {
   "name": "vue-shopify-products",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Formats a Shopify CSV to be more manageable for use within Vue",
   "main": "dist/vue-shopify-products.min.js",
   "scripts": {
