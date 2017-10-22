@@ -143,7 +143,9 @@ const ShopifyProducts = {
 				// Remove any null values from the variatiomn
 				Object.keys(variation).forEach(key => variation[key] == null && delete variation[key]);
 
-				item.variationProducts.push(variation);
+				if (variation.sku) {
+					item.variationProducts.push(variation);
+				}
 
 				// Update the output object
 				output[handle] = item;
