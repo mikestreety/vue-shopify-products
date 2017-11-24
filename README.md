@@ -4,10 +4,6 @@
 
 This Vue plugin takes a shopify CSV and converts it into a more freiendly format. Combining products and adding image and product variations as arrays and objects, this plugin allows you to use [Shopify test data](https://github.com/shopifypartners/shopify-product-csvs-and-images) to practice building a shop with Vue.
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/P2ykVhzvaX3bnw1z9xZWvYSN/mikestreety/vue-shopify-products'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/P2ykVhzvaX3bnw1z9xZWvYSN/mikestreety/vue-shopify-products.svg' />
-</a>
-
 ## Installation
 
 Include the JS in your file:
